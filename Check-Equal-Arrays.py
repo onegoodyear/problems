@@ -1,0 +1,22 @@
+
+# Given two arrays a[] and b[] of equal size, the task is to find whether the elements in the arrays are equal.
+# Two arrays are said to be equal if both contain the same set of elements, arrangements (or permutations) of elements may be different though.
+# Note: If there are repetitions, then counts of repeated elements must also be the same for two arrays to be equal.
+
+
+
+class Solution:
+    def checkEqual(self, a, b) -> bool:
+        d = {}
+        for val in a:
+            if val in d: d[val] += 1
+            else: d[val] = 1
+            
+        for val in b:
+            if val in d: d[val] -= 1
+            else: return False
+            
+        for key in d:
+            if d[key]!=0: return False
+        
+        return True
