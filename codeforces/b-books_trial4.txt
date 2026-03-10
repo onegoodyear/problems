@@ -1,0 +1,30 @@
+import sys
+input = sys.stdin.readline
+
+def solve():
+    n, t = map(int, input().split())
+    books = list(map(int, input().split()))
+    left = 0
+    right = 0
+    timer = t
+    result = 0
+    while right < n:
+        if books[right] > timer:
+            result = max(result, right - left)
+            timer += books[left]
+            left += 1
+            if books[right] > t:
+                right += 1
+                left = right
+                timer = t
+        else:
+            timer -= books[right]
+            right += 1    
+    else: result = max(result, right - left)
+    print(result)
+        
+
+if __name__ == "__main__":
+    solve()
+
+
